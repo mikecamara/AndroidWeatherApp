@@ -376,6 +376,9 @@ public class MainActivity extends ActionBarActivity implements
 
             mHumidityValue.setText("Stay home");
 
+        }else {
+            mHumidityValue.setText("Go work");
+
         }
 
         //mHumidityValue.setText(current.getHumidity() + "");
@@ -398,6 +401,9 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     private Day[] getDailyForecast(String jsonData) throws JSONException {
+
+        int rainyDays = 0;
+
         JSONObject forecast = new JSONObject(jsonData);
         String timezone = forecast.getString("timezone");
         JSONObject daily = forecast.getJSONObject("daily");
@@ -413,12 +419,29 @@ public class MainActivity extends ActionBarActivity implements
             day.setIcon(jsonDay.getString("icon"));
             day.setTemperatureMax(jsonDay.getDouble("temperatureMax"));
             day.setTime(jsonDay.getLong("time"));
+            day.setChanceRain(jsonDay.getDouble("precipProbability"));
             day.setTimezone(timezone);
 
             days[i] = day;
+
+            //collect data how many days are raining and Toast it when user open days tab
+
+           // if (days[i].getIcon().equalsIgnoreCase("clear-day")) {
+                if (days[i].getChanceRain() > 0) {
+
+                    rainyDays = rainyDays + 1;
+                String stringRainyDays = String.valueOf(rainyDays);
+                Log.d("TEST",stringRainyDays);
+
+
+            }
         }
+
         return days;
+
+
     }
+
 
     private Hour[] getHourlyForecast(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
