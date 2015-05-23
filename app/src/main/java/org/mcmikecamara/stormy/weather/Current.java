@@ -15,6 +15,8 @@ public class Current {
     private double mHumidity;
     private double mPrecipChance;
     private String mSummary;
+    private String mTimezone;
+
 
     public String getTimezone() {
         return mTimezone;
@@ -24,7 +26,6 @@ public class Current {
         mTimezone = timezone;
     }
 
-    private String mTimezone;
 
     public String getIcon() {
         return mIcon;

@@ -51,6 +51,8 @@ public class DayAdapter extends BaseAdapter {
             holder.temperatureLabel = (TextView) convertView.findViewById(R.id.temperatureLabel);
             holder.dayLabel = (TextView) convertView.findViewById(R.id.dayNameLabel);
 
+
+
             convertView.setTag(holder);
         }
         else {
