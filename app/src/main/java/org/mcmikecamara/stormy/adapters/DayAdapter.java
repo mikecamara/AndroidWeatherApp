@@ -19,6 +19,9 @@ public class DayAdapter extends BaseAdapter {
     private Context mContext;
     private Day[] mDays;
 
+
+
+
     public DayAdapter(Context context, Day[] days){
         mContext = context;
         mDays = days;
@@ -50,6 +53,7 @@ public class DayAdapter extends BaseAdapter {
             holder.iconImageView = (ImageView) convertView.findViewById(R.id.iconImageView);
             holder.temperatureLabel = (TextView) convertView.findViewById(R.id.temperatureLabel);
             holder.dayLabel = (TextView) convertView.findViewById(R.id.dayNameLabel);
+            holder.timezone = (TextView) convertView.findViewById(R.id.locationLabel);
 
 
 
@@ -64,10 +68,14 @@ public class DayAdapter extends BaseAdapter {
         holder.iconImageView.setImageResource(day.getIconId());
         holder.temperatureLabel.setText(day.getTemperatureMax() + "");
 
+
+
         if (position == 0) {
             holder.dayLabel.setText("Today");
         }
-        else{
+        else   if (position == 1) {
+            holder.dayLabel.setText("Tomorrow");
+        }else{
         holder.dayLabel.setText(day.getDayOfTheWeek());
         }
 
@@ -78,5 +86,6 @@ public class DayAdapter extends BaseAdapter {
         ImageView iconImageView;
         TextView temperatureLabel;
         TextView dayLabel;
+        TextView timezone;
     }
 }

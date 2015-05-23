@@ -26,6 +26,7 @@ public class DailyForecastActivity extends Activity {
     @InjectView(android.R.id.list) ListView mListView;
     @InjectView(android.R.id.empty) TextView mEmptyTextView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +47,11 @@ public class DailyForecastActivity extends Activity {
 
                 String dayOfTheWeek = mDays[position].getDayOfTheWeek();
                 String conditions = mDays[position].getSummary();
+                String timezone = mDays[position].getTimezone();
                 String highTemp = mDays[position].getTemperatureMax() + "";
-                String message = String.format("On %s the high will be %s and it will be %s",
+                String message = String.format("On %s in %s the high will be %s and it will be %s",
                         dayOfTheWeek,
+                        timezone,
                         highTemp,
                         conditions);
                 Toast.makeText(DailyForecastActivity.this, message,Toast.LENGTH_LONG).show();

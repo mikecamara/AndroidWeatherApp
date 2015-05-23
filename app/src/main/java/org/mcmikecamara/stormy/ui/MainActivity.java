@@ -371,7 +371,14 @@ public class MainActivity extends ActionBarActivity implements
         mTimezone.setText(current.getTimezone() + "");
         mTemperatureLabel.setText(current.getTemperature() + "");
         mTimeLabel.setText("Now it's " + current.getFormattedTime() + " and the current temperature is");
-        mHumidityValue.setText(current.getHumidity() + "");
+
+        if (current.getPrecipChance() > 0){
+
+            mHumidityValue.setText("Stay home");
+
+        }
+
+        //mHumidityValue.setText(current.getHumidity() + "");
         mPrecipValue.setText(current.getPrecipChance() + "%");
         mSummaryLabel.setText(current.getSummary());
         mTimezone.setText(current.getTimezone());

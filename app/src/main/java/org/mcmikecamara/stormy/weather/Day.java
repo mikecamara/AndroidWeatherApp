@@ -16,6 +16,18 @@ public class Day implements Parcelable {
     private String mSummary;
     private double mTemperatureMax;
     private String mIcon;
+    private String mTimezone;
+    private double mChanceRain;
+
+
+    public double getChanceRain() {
+        return mChanceRain;
+    }
+
+    public void setChanceRain(double chanceRain) {
+        mChanceRain = chanceRain;
+    }
+
 
     public String getTimezone() {
         return mTimezone;
@@ -43,7 +55,7 @@ public class Day implements Parcelable {
 
 
     public int getTemperatureMax() {
-        return ((((int)Math.round(mTemperatureMax))- 32)*5)/9;
+        return ((((int) Math.round(mTemperatureMax)) - 32) * 5) / 9;
     }
 
     public void setTemperatureMax(double temperatureMax) {
@@ -58,9 +70,8 @@ public class Day implements Parcelable {
         mIcon = icon;
     }
 
-    private String mTimezone;
 
-    public int getIconId(){
+    public int getIconId() {
         return Forecast.getIconId(mIcon);
     }
 
@@ -84,17 +95,20 @@ public class Day implements Parcelable {
         dest.writeDouble(mTemperatureMax);
         dest.writeString(mIcon);
         dest.writeString(mTimezone);
+        dest.writeDouble(mChanceRain);
 
     }
 
-    private Day(Parcel in){
+    private Day(Parcel in) {
         mTime = in.readLong();
         mSummary = in.readString();
         mTemperatureMax = in.readDouble();
         mIcon = in.readString();
         mTimezone = in.readString();
+        mChanceRain = in.readDouble();
 
     }
+
     public Day() {
 
     }

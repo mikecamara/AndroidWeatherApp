@@ -35,6 +35,7 @@
         android:id="@+id/timeLabel"
         android:layout_alignTop="@+id/temperatureLabel"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:textColor="#80ffffff"
         android:textSize="18sp"/>
 
