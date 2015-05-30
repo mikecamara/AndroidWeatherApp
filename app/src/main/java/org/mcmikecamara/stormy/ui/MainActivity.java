@@ -129,6 +129,8 @@ public class MainActivity extends ActionBarActivity implements
 
         //3 - execute the call
 
+
+
     }
 
     @Override
@@ -382,7 +384,7 @@ public class MainActivity extends ActionBarActivity implements
         }
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
-        if (current.getTemperature() > 18) {
+        if (current.getTemperature() > 25) {
             layout.setBackground(getDrawable(R.drawable.bg_gradient_warm));
 
         } else {
