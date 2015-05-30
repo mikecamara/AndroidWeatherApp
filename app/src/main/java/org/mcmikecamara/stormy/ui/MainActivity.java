@@ -71,6 +71,8 @@ public class MainActivity extends ActionBarActivity implements
 
 
     private Forecast mForecast;
+    private Day[] mDays;
+
 
 
     @InjectView(R.id.timeLabel)
@@ -93,6 +95,22 @@ public class MainActivity extends ActionBarActivity implements
     @InjectView(R.id.locationLabel)
     TextView mTimezone;
 
+    @InjectView(R.id.precipValue1)
+    TextView mPrecipValue1;
+    @InjectView(R.id.precipValue2)
+    TextView mPrecipValue2;
+    @InjectView(R.id.precipValue3)
+    TextView mPrecipValue3;
+    @InjectView(R.id.precipValue4)
+    TextView mPrecipValue4;
+    @InjectView(R.id.precipValue5)
+    TextView mPrecipValue5;
+
+  //  @InjectView(R.id.temperatureLabelMax)
+    //TextView mTempMax;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +118,11 @@ public class MainActivity extends ActionBarActivity implements
         setContentView(R.layout.activity_main);
 
         setUpMapIfNeeded();
+
+//        Intent intent = getIntent();
+//        Parcelable[] parcelables = intent.getParcelableArrayExtra(this.DAILY_FORECAST);
+//        mDays = Arrays.copyOf(parcelables, parcelables.length, Day[].class);
+//
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -367,21 +390,21 @@ public class MainActivity extends ActionBarActivity implements
     private void updateDisplay() {
 
 
-        Current current = mForecast.getCurrent();
+       // String conditions = mDays[0].getSummary();
+
+
+
+            Current current = mForecast.getCurrent();
 
 
         mTimezone.setText(current.getTimezone() + "");
-        mTemperatureLabel.setText(current.getTemperature() + "");
-        mTimeLabel.setText("Now it's " + current.getFormattedTime() + " and the current temperature is");
+        mTemperatureLabel.setText(current.getTemperature() + "°");
+        mTimeLabel.setText("Now - " + current.getFormattedTime());
+        //mTempMax.setText(current.getTemperatureMax() + "");
+        //mTempMax.setText(conditions);
+            mHumidityValue.setText(current.getHumidity()+"°");
 
-        if (current.getPrecipChance() > 0) {
 
-            mHumidityValue.setText("Stay home");
-
-        } else {
-            mHumidityValue.setText("Go work");
-
-        }
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
         if (current.getTemperature() > 25) {
@@ -391,7 +414,13 @@ public class MainActivity extends ActionBarActivity implements
             layout.setBackground(getDrawable(R.drawable.bg_gradient_cool));
         }
         //mHumidityValue.setText(current.getHumidity() + "");
-        mPrecipValue.setText(current.getPrecipChance() + "%");
+        mPrecipValue.setText(current.getPrecipChance() + "°");
+        mPrecipValue1.setText(current.getPrecipChance() + "%");
+        mPrecipValue2.setText(current.getPrecipChance() + "%");
+        mPrecipValue3.setText(current.getPrecipChance() + "%");
+        mPrecipValue4.setText(current.getFormattedTime());
+        mPrecipValue5.setText(current.getFormattedTime());
+
         mSummaryLabel.setText(current.getSummary());
         mTimezone.setText(current.getTimezone());
 
@@ -409,7 +438,7 @@ public class MainActivity extends ActionBarActivity implements
 
     }
 
-    private Day[] getDailyForecast(String jsonData) throws JSONException {
+    public Day[] getDailyForecast(String jsonData) throws JSONException {
 
         int rainyDays = 0;
 
@@ -438,6 +467,7 @@ public class MainActivity extends ActionBarActivity implements
             day.setTime(jsonDay.getLong("time"));
             day.setChanceRain(jsonDay.getDouble("precipProbability"));
             day.setTimezone(timezone);
+            day.setSunriseTime(jsonDay.getLong("sunriseTime"));
 
             days[i] = day;
 
@@ -510,6 +540,8 @@ public class MainActivity extends ActionBarActivity implements
         Log.i(TAG, "From JSON: " + timezone);
 
         JSONObject currently = forecast.getJSONObject("currently");
+        JSONObject daily = forecast.getJSONObject("daily");
+
 
         Current current = new Current();
         current.setHumidity(currently.getDouble("humidity"));
@@ -520,7 +552,16 @@ public class MainActivity extends ActionBarActivity implements
         current.setTemperature(currently.getDouble("temperature"));
         current.setTimezone(timezone);
 
-        Log.d(TAG, current.getFormattedTime());
+       // current.setTemperatureMax(daily.getDouble("temperatureMax"));
+
+       // Log.d(TAG, current.getFormattedTime());
+
+        //get dayly as well
+        //JSONObject daily = forecast.getJSONObject("daily");
+
+        //Day day = new Day();
+        //current.setTemperatureMax(daily.getDouble("temperatureMax"));
+
 
         return current;
     }

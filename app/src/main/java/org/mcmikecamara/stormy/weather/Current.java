@@ -18,6 +18,22 @@ public class Current {
     private String mTimezone;
 
 
+    private double mTemperatureMax;
+
+
+
+    public int getTemperatureMax() {
+        return ((((int)Math.round(mTemperatureMax))- 32)*5)/9;
+    }
+
+
+
+    public void setTemperatureMax(double temperatureMax) {
+        mTemperatureMax = temperatureMax;
+    }
+
+
+
     public String getTimezone() {
         return mTimezone;
     }

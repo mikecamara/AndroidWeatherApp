@@ -18,8 +18,10 @@ public class Day implements Parcelable {
     private String mIcon;
     private String mTimezone;
     private double mChanceRain;
+    private long mSunriseTime;
+    private long mSunsetTime;
 
-<<<<<<< HEAD
+
     public long getSunriseTime() {
         return mSunriseTime;
     }
@@ -28,8 +30,7 @@ public class Day implements Parcelable {
         mSunriseTime = sunriseTime;
     }
 
-    private long mSunriseTime;
-    private long mSunsetTime;
+
 
     public boolean getIsDay() {
 
@@ -45,8 +46,6 @@ public class Day implements Parcelable {
 
     private boolean isDay;
 
-=======
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
 
     public double getChanceRain() {
         return mChanceRain;
@@ -124,11 +123,6 @@ public class Day implements Parcelable {
         dest.writeString(mIcon);
         dest.writeString(mTimezone);
         dest.writeDouble(mChanceRain);
-<<<<<<< HEAD
-        dest.writeLong(mSunriseTime);
-        dest.writeLong(mSunsetTime);
-=======
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
 
     }
 
@@ -139,11 +133,7 @@ public class Day implements Parcelable {
         mIcon = in.readString();
         mTimezone = in.readString();
         mChanceRain = in.readDouble();
-<<<<<<< HEAD
-        mSunriseTime = in.readLong();
-        mSunsetTime = in.readLong();
-=======
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
+
 
     }
 

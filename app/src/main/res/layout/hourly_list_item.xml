@@ -5,13 +5,8 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-<<<<<<< HEAD
                 tools:background="@drawable/bg_gradient_warm">
-=======
-                tools:background='@drawable/bg_gradient'>
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
-
-    <TextView
+<TextView
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:id="@+id/timeLabel"
