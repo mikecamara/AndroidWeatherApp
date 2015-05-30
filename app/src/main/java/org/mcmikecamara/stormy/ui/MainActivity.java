@@ -13,10 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-<<<<<<< HEAD
 import android.widget.RelativeLayout;
-=======
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,11 +42,8 @@ import org.mcmikecamara.stormy.weather.Forecast;
 import org.mcmikecamara.stormy.weather.Hour;
 
 import java.io.IOException;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
-=======
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -100,10 +94,6 @@ public class MainActivity extends ActionBarActivity implements
     TextView mTimezone;
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +118,6 @@ public class MainActivity extends ActionBarActivity implements
         mProgressBar.setVisibility(View.INVISIBLE);
 
 
-<<<<<<< HEAD
         //final double latitude =  mLocationRequest.getLatitude();
         // final double longitude = location.getLongitude();
 
@@ -141,21 +130,6 @@ public class MainActivity extends ActionBarActivity implements
         //3 - execute the call
 
 
-=======
-
-        //final double latitude =  mLocationRequest.getLatitude();
-       // final double longitude = location.getLongitude();
-
-         final double latitude = 37.8267 ;
-        final double longitude = -122.423 ;
-
-
-
-
-        //getForecast(latitude, longitude);
-
-        //3 - execute the call
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
 
     }
 
@@ -392,10 +366,7 @@ public class MainActivity extends ActionBarActivity implements
 
     private void updateDisplay() {
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
         Current current = mForecast.getCurrent();
 
 
@@ -403,7 +374,6 @@ public class MainActivity extends ActionBarActivity implements
         mTemperatureLabel.setText(current.getTemperature() + "");
         mTimeLabel.setText("Now it's " + current.getFormattedTime() + " and the current temperature is");
 
-<<<<<<< HEAD
         if (current.getPrecipChance() > 0) {
 
             mHumidityValue.setText("Stay home");
@@ -420,17 +390,6 @@ public class MainActivity extends ActionBarActivity implements
         } else {
             layout.setBackground(getDrawable(R.drawable.bg_gradient_cool));
         }
-=======
-        if (current.getPrecipChance() > 0){
-
-            mHumidityValue.setText("Stay home");
-
-        }else {
-            mHumidityValue.setText("Go work");
-
-        }
-
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
         //mHumidityValue.setText(current.getHumidity() + "");
         mPrecipValue.setText(current.getPrecipChance() + "%");
         mSummaryLabel.setText(current.getSummary());
@@ -461,7 +420,6 @@ public class MainActivity extends ActionBarActivity implements
 
         Day[] days = new Day[data.length()];
 
-<<<<<<< HEAD
 
         List<Day> tooHotDays = new ArrayList<Day>();
         List<Day> tooRainyDays = new ArrayList<Day>();
@@ -470,8 +428,6 @@ public class MainActivity extends ActionBarActivity implements
 
 
 
-=======
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
         for (int i = 0; i < data.length(); i++) {
             JSONObject jsonDay = data.getJSONObject(i);
             Day day = new Day();
@@ -485,7 +441,6 @@ public class MainActivity extends ActionBarActivity implements
 
             days[i] = day;
 
-<<<<<<< HEAD
 
             if ((day.getTemperatureMax()) > 36) {
                 tooHotDays.add(day);
@@ -509,28 +464,15 @@ public class MainActivity extends ActionBarActivity implements
                 rainyDays = rainyDays + 1;
                 String stringRainyDays = String.valueOf(rainyDays);
                 Log.d("TEST", stringRainyDays);
-=======
-            //collect data how many days are raining and Toast it when user open days tab
-
-           // if (days[i].getIcon().equalsIgnoreCase("clear-day")) {
-                if (days[i].getChanceRain() > 0) {
-
-                    rainyDays = rainyDays + 1;
-                String stringRainyDays = String.valueOf(rainyDays);
-                Log.d("TEST",stringRainyDays);
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
 
 
             }
         }
 
-<<<<<<< HEAD
         int amountRainyDays = tooRainyDays.size();
         int amountHotDays = tooHotDays.size();
         int amountColdDays = tooColdDays.size();
 
-=======
->>>>>>> 2e0821e3504af91926c453cb6006377cdc2ed07c
         return days;
 
 
