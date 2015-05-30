@@ -31,12 +31,11 @@ public class Day implements Parcelable {
     }
 
 
-
     public boolean getIsDay() {
 
-        if (mTime < mSunriseTime && mTime > mSunsetTime){
+        if (mTime < mSunriseTime && mTime > mSunsetTime) {
             isDay = false;
-       }
+        }
         return isDay;
     }
 

@@ -1,82 +1,82 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
+<RelativeLayout
+    android:id="@+id/relativeLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient_warm"
 
-                android:id="@+id/relativeLayout"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context=".MainActivity"
-                android:background="@drawable/bg_gradient_warm"
-                >
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    >
 
     <TextView
+        android:id="@+id/locationLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:id="@+id/locationLabel"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text=""
+        android:textColor="@android:color/white"
+        android:textSize="24sp"/>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/locationLabel"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:weightSum="70"
-        android:id="@+id/linearLayout2">
+        android:orientation="horizontal"
+        android:weightSum="70">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="..."
-        android:id="@+id/timeLabel"
-        android:layout_alignTop="@+id/temperatureLabel"
-        android:layout_centerHorizontal="false"
-        android:layout_centerVertical="true"
-        android:textColor="#80ffffff"
-        android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/timeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/temperatureLabel"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
+            android:text="..."
+            android:textColor="#80ffffff"
+            android:textSize="18sp"/>
     </LinearLayout>
 
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/timeLabel"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:weightSum="70"
-        android:id="@+id/linearLayout">
+        android:orientation="horizontal"
+        android:weightSum="70">
 
-    <TextView
+        <TextView
+            android:id="@+id/temperatureLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="--"
-            android:id="@+id/temperatureLabel"
-            android:textColor="@android:color/white"
-            android:textSize="80sp"
             android:layout_above="@+id/degreeImageView"
-            android:layout_toLeftOf="@+id/iconImageView"/>
-
+            android:layout_toLeftOf="@+id/iconImageView"
+            android:text="--"
+            android:textColor="@android:color/white"
+            android:textSize="80sp"/>
 
 
         <ImageView
+            android:id="@+id/iconImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/iconImageView"
-            android:src="@mipmap/cloudy_night"
+            android:layout_alignRight="@+id/degreeImageView"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="45dp"
             android:scaleX="3"
             android:scaleY="3"
-            android:layout_alignRight="@+id/degreeImageView"
-            android:layout_marginTop="45dp"
-            android:layout_marginLeft="15dp"
+            android:src="@mipmap/cloudy_night"
             />
 
         <FrameLayout
@@ -86,174 +86,179 @@
             >
 
 
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/iconImageView"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="33dp"
-            android:id="@+id/circleTempMin"
-            android:src="@mipmap/bg_temperature_min"/>
-
-        <ImageView
+            <ImageView
+                android:id="@+id/circleTempMin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/circleTempMin"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="33dp"
+                android:layout_toRightOf="@+id/iconImageView"
+                android:src="@mipmap/bg_temperature_min"/>
+
+            <ImageView
+                android:id="@+id/circleTempMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="80dp"
                 android:layout_marginTop="33dp"
-                android:scaleY="1"
+                android:layout_toRightOf="@+id/circleTempMin"
                 android:scaleX="1"
-                android:id="@+id/circleTempMax"
+                android:scaleY="1"
                 android:src="@mipmap/bg_temperature_max"
-         />
+                />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/precipValue"
-            android:layout_toRightOf="@+id/iconImageView"
-            android:layout_marginLeft="38dp"
-            android:layout_marginTop="45dp"
-            android:textColor="#ffffff"
-            tools:text="100"/>
+            <TextView
+                android:id="@+id/precipValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="38dp"
+                android:layout_marginTop="45dp"
+                android:layout_toRightOf="@+id/iconImageView"
+                android:textColor="#ffffff"
+                tools:text="100"/>
 
 
             <TextView
+                android:id="@+id/humidityValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="--"
-                android:id="@+id/humidityValue"
-                android:layout_toRightOf="@+id/circleTempMin"
                 android:layout_marginLeft="88dp"
                 android:layout_marginTop="45dp"
+                android:layout_toRightOf="@+id/circleTempMin"
+                android:text="--"
                 android:textColor="@android:color/white"
-               />
+                />
 
 
-
-
-    </FrameLayout>
-
+        </FrameLayout>
 
 
     </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="220dp"
-                    android:id="@+id/linearLayout3"
-                    android:weightSum="1">
-
-    <TextView
-        android:layout_width="43dp"
-        android:layout_height="wrap_content"
-        android:text="Rain"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/precipLabel"
-        android:textColor="#80ffffff"
-        android:layout_weight="0.21"/>
-    <TextView
-        android:layout_width="51dp"
-        android:layout_height="wrap_content"
-        android:text="Wind"
-        android:layout_toEndOf="@+id/precipLabel"
-        android:id="@+id/humidityLabel"
-        android:textColor="#80ffffff"
-        android:layout_weight="0.15"/>
-        <TextView
-            android:layout_width="54dp"
-            android:layout_height="wrap_content"
-            android:text="Moon"
-            android:layout_toEndOf="@+id/humidityLabelLabel"
-            android:id="@+id/moonLabel"
-            android:textColor="#80ffffff"
-            android:layout_weight="0.15"/>
-        <TextView
-            android:layout_width="57dp"
-            android:layout_height="wrap_content"
-            android:text="Sunrise"
-            android:layout_toEndOf="@+id/moonLabel"
-            android:id="@+id/sunriseLabel"
-            android:textColor="#80ffffff"
-            android:layout_weight="0.19"/>
-        <TextView
-            android:layout_width="59dp"
-            android:layout_height="wrap_content"
-            android:text="Sunset"
-            android:layout_toEndOf="@+id/sunriseLabel"
-            android:id="@+id/sunsetLabel"
-            android:textColor="#80ffffff"
-            />
-</LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="220dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/precipLabel"
+            android:layout_width="43dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.21"
+            android:text="Rain"
+            android:textColor="#80ffffff"/>
+
+        <TextView
+            android:id="@+id/humidityLabel"
+            android:layout_width="51dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/precipLabel"
+            android:layout_weight="0.15"
+            android:text="Wind"
+            android:textColor="#80ffffff"/>
+
+        <TextView
+            android:id="@+id/moonLabel"
+            android:layout_width="54dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/humidityLabelLabel"
+            android:layout_weight="0.15"
+            android:text="Moon"
+            android:textColor="#80ffffff"/>
+
+        <TextView
+            android:id="@+id/sunriseLabel"
+            android:layout_width="57dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/moonLabel"
+            android:layout_weight="0.19"
+            android:text="Sunrise"
+            android:textColor="#80ffffff"/>
+
+        <TextView
+            android:id="@+id/sunsetLabel"
+            android:layout_width="59dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/sunriseLabel"
+            android:text="Sunset"
+            android:textColor="#80ffffff"
+            />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
+        android:orientation="horizontal"
         android:weightSum="1">
 
         <ImageView
+            android:id="@+id/rainIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="23dp"
-            android:scaleY="0.7"
             android:scaleX="0.7"
-            android:id="@+id/rainIcon"
+            android:scaleY="0.7"
             android:src="@mipmap/rain_icon"
             />
+
         <ImageView
+            android:id="@+id/windIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_marginTop="23dp"
-            android:scaleY="0.7"
-            android:scaleX="0.7"
-            android:id="@+id/windIcon"
-            android:src="@mipmap/wind_icon"
             android:layout_toEndOf="@+id/rainIcon"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:src="@mipmap/wind_icon"
 
             />
+
         <ImageView
+            android:id="@+id/moonIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="23dp"
-            android:scaleY="0.7"
-            android:scaleX="0.7"
-            android:id="@+id/moonIcon"
-            android:src="@mipmap/moon_icon"
             android:layout_toEndOf="@+id/windIcon"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:src="@mipmap/moon_icon"
 
             />
+
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="19dp"
-            android:layout_marginTop="23dp"
-            android:scaleY="0.7"
-            android:scaleX="0.7"
             android:id="@+id/sunriseIcon"
-            android:src="@mipmap/sunrise_icon"
-            android:layout_toEndOf="@+id/moonIcon"
-
-            />
-        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="19dp"
             android:layout_marginTop="23dp"
-            android:scaleY="0.7"
+            android:layout_toEndOf="@+id/moonIcon"
             android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:src="@mipmap/sunrise_icon"
+
+            />
+
+        <ImageView
             android:id="@+id/sunsetIcon"
-            android:src="@mipmap/sunset_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="23dp"
             android:layout_toEndOf="@+id/sunriseIcon"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:src="@mipmap/sunset_icon"
 
             />
 
@@ -261,121 +266,123 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="280dp"
-        android:id="@+id/linearLayout5"
+        android:orientation="horizontal"
         android:weightSum="1">
 
         <TextView
+            android:id="@+id/precipValue1"
             android:layout_width="43dp"
             android:layout_height="wrap_content"
-            android:text="Rain"
             android:layout_marginLeft="20dp"
-            android:id="@+id/precipValue1"
-            android:textColor="#80ffffff"
-            android:layout_weight="0.21"/>
+            android:layout_weight="0.21"
+            android:text="Rain"
+            android:textColor="#80ffffff"/>
+
         <TextView
+            android:id="@+id/precipValue2"
             android:layout_width="51dp"
             android:layout_height="wrap_content"
-            android:text="Wind"
             android:layout_toEndOf="@+id/precipLabel"
-            android:id="@+id/precipValue2"
-            android:textColor="#80ffffff"
-            android:layout_weight="0.15"/>
+            android:layout_weight="0.15"
+            android:text="Wind"
+            android:textColor="#80ffffff"/>
+
         <TextView
+            android:id="@+id/precipValue3"
             android:layout_width="54dp"
             android:layout_height="wrap_content"
-            android:text="Moon"
             android:layout_toEndOf="@+id/humidityLabelLabel"
-            android:id="@+id/precipValue3"
-            android:textColor="#80ffffff"
-            android:layout_weight="0.15"/>
+            android:layout_weight="0.15"
+            android:text="Moon"
+            android:textColor="#80ffffff"/>
+
         <TextView
+            android:id="@+id/precipValue4"
             android:layout_width="57dp"
             android:layout_height="wrap_content"
-            android:text="Sunrise"
             android:layout_toEndOf="@+id/moonLabel"
-            android:id="@+id/precipValue4"
-            android:textColor="#80ffffff"
-            android:layout_weight="0.19"/>
+            android:layout_weight="0.19"
+            android:text="Sunrise"
+            android:textColor="#80ffffff"/>
+
         <TextView
+            android:id="@+id/precipValue5"
             android:layout_width="59dp"
             android:layout_height="wrap_content"
-            android:text="Sunset"
             android:layout_toEndOf="@+id/sunriseLabel"
-            android:id="@+id/precipValue5"
+            android:text="Sunset"
             android:textColor="#80ffffff"
             />
     </LinearLayout>
 
-<TextView
+    <TextView
+        android:id="@+id/summaryLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Getting current weather..."
-        android:id="@+id/summaryLabel"
-        android:textColor="@android:color/white"
-        android:textSize="18dp"
-        android:gravity="center_horizontal"
         android:layout_above="@+id/linearLayout2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="5dp"
+        android:gravity="center_horizontal"
+        android:text="Getting current weather..."
+        android:textColor="@android:color/white"
+        android:textSize="18dp"
 
         />
 
     <ImageView
+        android:id="@+id/refreshImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/refreshImageView"
-        android:src="@mipmap/refresh"
         android:layout_above="@+id/summaryLabel"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="26dp"/>
+        android:layout_marginBottom="26dp"
+        android:src="@mipmap/refresh"/>
 
     <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
         android:layout_above="@+id/summaryLabel"
         android:layout_centerHorizontal="true"
         android:indeterminate="false"/>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="2dp"
-        android:id="@+id/linearLayout2">
+        android:orientation="horizontal">
 
         <Button
+            android:id="@+id/hourlyButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="HOURLY"
-            android:id="@+id/hourlyButton"
             android:layout_weight="1"
             android:background="#40FFFFFF"
+            android:text="HOURLY"
             android:textColor="#ffffffff"
             />
 
         <Button
+            android:id="@+id/dailyButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="7 DAYS"
-            android:id="@+id/dailyButton"
+            android:layout_marginLeft="2dp"
             android:layout_weight="1"
             android:background="#40ffffff"
-            android:textColor="#ffffffff"
-            android:layout_marginLeft="2dp"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:text="7 DAYS"
+            android:textColor="#ffffffff"/>
 
     </LinearLayout>
-
-
 
 
 </RelativeLayout>

@@ -22,10 +22,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
@@ -64,15 +61,9 @@ public class MainActivity extends ActionBarActivity implements
          */
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
-
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
-
-
     private Forecast mForecast;
-    private Day[] mDays;
-
 
 
     @InjectView(R.id.timeLabel)
@@ -91,10 +82,8 @@ public class MainActivity extends ActionBarActivity implements
     ImageView mRefreshImageView;
     @InjectView(R.id.progressBar)
     ProgressBar mProgressBar;
-
     @InjectView(R.id.locationLabel)
     TextView mTimezone;
-
     @InjectView(R.id.precipValue1)
     TextView mPrecipValue1;
     @InjectView(R.id.precipValue2)
@@ -106,23 +95,12 @@ public class MainActivity extends ActionBarActivity implements
     @InjectView(R.id.precipValue5)
     TextView mPrecipValue5;
 
-  //  @InjectView(R.id.temperatureLabelMax)
-    //TextView mTempMax;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setUpMapIfNeeded();
-
-//        Intent intent = getIntent();
-//        Parcelable[] parcelables = intent.getParcelableArrayExtra(this.DAILY_FORECAST);
-//        mDays = Arrays.copyOf(parcelables, parcelables.length, Day[].class);
-//
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -140,26 +118,11 @@ public class MainActivity extends ActionBarActivity implements
 
         mProgressBar.setVisibility(View.INVISIBLE);
 
-
-        //final double latitude =  mLocationRequest.getLatitude();
-        // final double longitude = location.getLongitude();
-
-        final double latitude = 37.8267;
-        final double longitude = -122.423;
-
-
-        //getForecast(latitude, longitude);
-
-        //3 - execute the call
-
-
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setUpMapIfNeeded();
         mGoogleApiClient.connect();
     }
 
@@ -173,44 +136,6 @@ public class MainActivity extends ActionBarActivity implements
         }
     }
 
-
-    /**
-     * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
-     * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
-     * <p/>
-     * If it isn't installed {@link SupportMapFragment} (and
-     * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
-     * install/update the Google Play services APK on their device.
-     * <p/>
-     * A user can return to this FragmentActivity after following the prompt and correctly
-     * installing/updating/enabling the Google Play services. Since the FragmentActivity may not
-     * have been completely destroyed during this process (it is likely that it would only be
-     * stopped or paused), {@link #onCreate(Bundle)} may not be called again so we should call this
-     * method in {@link #onResume()} to guarantee that it will be called.
-     */
-    private void setUpMapIfNeeded() {
-        // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
-            // Try to obtain the map from the SupportMapFragment.
-            //mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-            //         .getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                setUpMap();
-            }
-        }
-    }
-
-    /**
-     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
-     * just add a marker near Africa.
-     * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
-     */
-    private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
-    }
 
     private void handleNewLocation(Location location) {
         Log.d(TAG, location.toString());
@@ -237,12 +162,6 @@ public class MainActivity extends ActionBarActivity implements
 
         LatLng latLng = new LatLng(currentLatitude, currentLongitude);
 
-        //mMap.addMarker(new MarkerOptions().position(new LatLng(currentLatitude, currentLongitude)).title("Current Location"));
-        // MarkerOptions options = new MarkerOptions()
-        //       .position(latLng)
-        //     .title(latAsString + " and "+ lonAsString);
-        //mMap.addMarker(options);
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
     }
 
     @Override
@@ -389,20 +308,13 @@ public class MainActivity extends ActionBarActivity implements
 
     private void updateDisplay() {
 
-
-       // String conditions = mDays[0].getSummary();
-
-
-
-            Current current = mForecast.getCurrent();
+        Current current = mForecast.getCurrent();
 
 
         mTimezone.setText(current.getTimezone() + "");
         mTemperatureLabel.setText(current.getTemperature() + "°");
         mTimeLabel.setText("Now - " + current.getFormattedTime());
-        //mTempMax.setText(current.getTemperatureMax() + "");
-        //mTempMax.setText(conditions);
-            mHumidityValue.setText(current.getHumidity()+"°");
+        mHumidityValue.setText(current.getHumidity() + "°");
 
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativeLayout);
@@ -413,14 +325,12 @@ public class MainActivity extends ActionBarActivity implements
         } else {
             layout.setBackground(getDrawable(R.drawable.bg_gradient_cool));
         }
-        //mHumidityValue.setText(current.getHumidity() + "");
         mPrecipValue.setText(current.getPrecipChance() + "°");
         mPrecipValue1.setText(current.getPrecipChance() + "%");
         mPrecipValue2.setText(current.getPrecipChance() + "%");
         mPrecipValue3.setText(current.getPrecipChance() + "%");
         mPrecipValue4.setText(current.getFormattedTime());
         mPrecipValue5.setText(current.getFormattedTime());
-
         mSummaryLabel.setText(current.getSummary());
         mTimezone.setText(current.getTimezone());
 
@@ -430,12 +340,10 @@ public class MainActivity extends ActionBarActivity implements
 
     private Forecast parseForecastDetails(String jsonData) throws JSONException {
         Forecast forecast = new Forecast();
-
         forecast.setCurrent(getCurrentDetails(jsonData));
         forecast.setHourlyForecast(getHourlyForecast(jsonData));
         forecast.setDailyForecast(getDailyForecast(jsonData));
         return forecast;
-
     }
 
     public Day[] getDailyForecast(String jsonData) throws JSONException {
@@ -449,12 +357,11 @@ public class MainActivity extends ActionBarActivity implements
 
         Day[] days = new Day[data.length()];
 
-
+        //not using this variables, but might use in the future
         List<Day> tooHotDays = new ArrayList<Day>();
         List<Day> tooRainyDays = new ArrayList<Day>();
         List<Day> tooColdDays = new ArrayList<Day>();
         List<Day> perfectDays = new ArrayList<Day>();
-
 
 
         for (int i = 0; i < data.length(); i++) {
@@ -476,25 +383,20 @@ public class MainActivity extends ActionBarActivity implements
                 tooHotDays.add(day);
             }
 
-            if ((day.getTemperatureMax()) <10 ) {
+            if ((day.getTemperatureMax()) < 10) {
                 tooColdDays.add(day);
             }
 
-            if ((day.getChanceRain()) >0.5 ) {
+            if ((day.getChanceRain()) > 0.5) {
                 tooRainyDays.add(day);
             }
 
 
-
             //collect data how many days are raining and Toast it when user open days tab
-
-            // if (days[i].getIcon().equalsIgnoreCase("clear-day")) {
             if (days[i].getChanceRain() > 0) {
 
                 rainyDays = rainyDays + 1;
                 String stringRainyDays = String.valueOf(rainyDays);
-                Log.d("TEST", stringRainyDays);
-
 
             }
         }
@@ -504,7 +406,6 @@ public class MainActivity extends ActionBarActivity implements
         int amountColdDays = tooColdDays.size();
 
         return days;
-
 
     }
 
@@ -540,8 +441,6 @@ public class MainActivity extends ActionBarActivity implements
         Log.i(TAG, "From JSON: " + timezone);
 
         JSONObject currently = forecast.getJSONObject("currently");
-        JSONObject daily = forecast.getJSONObject("daily");
-
 
         Current current = new Current();
         current.setHumidity(currently.getDouble("humidity"));
@@ -551,17 +450,6 @@ public class MainActivity extends ActionBarActivity implements
         current.setSummary(currently.getString("summary"));
         current.setTemperature(currently.getDouble("temperature"));
         current.setTimezone(timezone);
-
-       // current.setTemperatureMax(daily.getDouble("temperatureMax"));
-
-       // Log.d(TAG, current.getFormattedTime());
-
-        //get dayly as well
-        //JSONObject daily = forecast.getJSONObject("daily");
-
-        //Day day = new Day();
-        //current.setTemperatureMax(daily.getDouble("temperatureMax"));
-
 
         return current;
     }

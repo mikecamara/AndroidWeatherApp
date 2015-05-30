@@ -21,17 +21,14 @@ public class Current {
     private double mTemperatureMax;
 
 
-
     public int getTemperatureMax() {
-        return ((((int)Math.round(mTemperatureMax))- 32)*5)/9;
+        return ((((int) Math.round(mTemperatureMax)) - 32) * 5) / 9;
     }
-
 
 
     public void setTemperatureMax(double temperatureMax) {
         mTemperatureMax = temperatureMax;
     }
-
 
 
     public String getTimezone() {
@@ -73,7 +70,7 @@ public class Current {
     }
 
     public int getTemperature() {
-        return ((((int)Math.round(mTemperature))- 32)*5)/9;
+        return ((((int) Math.round(mTemperature)) - 32) * 5) / 9;
     }
 
     public void setTemperature(double temperature) {

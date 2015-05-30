@@ -20,7 +20,8 @@ public class HourlyForecastActivity extends ActionBarActivity {
 
     private Hour[] mHours;
 
-    @InjectView(R.id.recyclerView) RecyclerView mRecyclerView;
+    @InjectView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

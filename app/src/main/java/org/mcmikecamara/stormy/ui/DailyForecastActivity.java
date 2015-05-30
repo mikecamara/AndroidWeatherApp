@@ -23,8 +23,10 @@ public class DailyForecastActivity extends Activity {
 
     private Day[] mDays;
 
-    @InjectView(android.R.id.list) ListView mListView;
-    @InjectView(android.R.id.empty) TextView mEmptyTextView;
+    @InjectView(android.R.id.list)
+    ListView mListView;
+    @InjectView(android.R.id.empty)
+    TextView mEmptyTextView;
 
 
     @Override
@@ -54,11 +56,10 @@ public class DailyForecastActivity extends Activity {
                         timezone,
                         highTemp,
                         conditions);
-                Toast.makeText(DailyForecastActivity.this, message,Toast.LENGTH_LONG).show();
+                Toast.makeText(DailyForecastActivity.this, message, Toast.LENGTH_LONG).show();
 
             }
         });
-
 
 
     }

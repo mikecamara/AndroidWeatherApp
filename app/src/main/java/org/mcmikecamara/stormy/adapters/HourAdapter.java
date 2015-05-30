@@ -20,9 +20,9 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
     private Hour[] mHours;
     private Context mContext;
 
-    public HourAdapter(Context context, Hour[] hours){
+    public HourAdapter(Context context, Hour[] hours) {
 
-       mHours = hours;
+        mHours = hours;
         mContext = context;
     }
 
@@ -37,7 +37,7 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
 
     @Override
     public void onBindViewHolder(HourViewHolder holder, int position) {
-        holder.bindHour(mHours[position])   ;
+        holder.bindHour(mHours[position]);
 
     }
 
@@ -47,7 +47,7 @@ public class HourAdapter extends RecyclerView.Adapter<HourAdapter.HourViewHolder
     }
 
     public class HourViewHolder extends RecyclerView.ViewHolder
-    implements View.OnClickListener{
+            implements View.OnClickListener {
 
         public TextView mTimeLabel;
         public TextView mSummaryLabel;

@@ -3,51 +3,51 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
                 android:paddingLeft="64dp"
                 android:paddingRight="32dp"
                 android:paddingTop="4dp"
-                android:paddingBottom="4dp"
                 tools:background="#ffaa00">
 
     <ImageView
+        android:id="@+id/circleImageVIew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/circleImageVIew"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:src="@mipmap/bg_temperature"/>
 
     <ImageView
+        android:id="@+id/iconImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/iconImageView"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/circleImageVIew"
         android:layout_toEndOf="@+id/circleImageVIew"
+        android:layout_toRightOf="@+id/circleImageVIew"
         android:paddingLeft="10dp"
         android:src="@mipmap/clear_day"/>
 
     <TextView
+        android:id="@+id/dayNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/dayNameLabel"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/iconImageView"
         android:layout_toEndOf="@+id/iconImageView"
+        android:layout_toRightOf="@+id/iconImageView"
+        android:paddingLeft="10dp"
         android:textColor="#ffffffff"
         android:textSize="20sp"
-        tools:text="Wednesday"
-        android:paddingLeft="10dp"/>
+        tools:text="Wednesday"/>
 
     <TextView
+        android:id="@+id/temperatureLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/temperatureLabel"
-        android:layout_alignTop="@+id/circleImageVIew"
         android:layout_alignBottom="@id/circleImageVIew"
         android:layout_alignLeft="@+id/circleImageVIew"
         android:layout_alignRight="@+id/circleImageVIew"
+        android:layout_alignTop="@+id/circleImageVIew"
         android:gravity="center"
         android:textColor="#f25019"
         tools:text="100"/>

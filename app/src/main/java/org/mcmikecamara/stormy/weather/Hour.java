@@ -16,7 +16,8 @@ public class Hour implements Parcelable {
     private String mIcon;
     private String mTimezone;
 
-    public Hour() {}
+    public Hour() {
+    }
 
     public long getTime() {
         return mTime;
@@ -36,21 +37,21 @@ public class Hour implements Parcelable {
 
     public int getTemperature() {
 
-        return ((((int)Math.round(mTemperature))- 32)*5)/9;
+        return ((((int) Math.round(mTemperature)) - 32) * 5) / 9;
     }
 
     public void setTemperature(double temperature) {
         mTemperature = temperature;
     }
 
-     public  String getIcon() {
-         return mIcon;
-     }
+    public String getIcon() {
+        return mIcon;
+    }
 
 
     public int getIconId() {
 
-            return Forecast.getIconId(mIcon);
+        return Forecast.getIconId(mIcon);
     }
 
     public void setIcon(String icon) {
@@ -85,6 +86,7 @@ public class Hour implements Parcelable {
         dest.writeString(mTimezone);
 
     }
+
     private Hour(Parcel in) {
         mTime = in.readLong();
         mTemperature = in.readDouble();

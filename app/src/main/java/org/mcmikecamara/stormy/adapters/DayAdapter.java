@@ -20,9 +20,7 @@ public class DayAdapter extends BaseAdapter {
     private Day[] mDays;
 
 
-
-
-    public DayAdapter(Context context, Day[] days){
+    public DayAdapter(Context context, Day[] days) {
         mContext = context;
         mDays = days;
     }
@@ -46,7 +44,7 @@ public class DayAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
-        if (convertView == null){
+        if (convertView == null) {
             //brand new
             convertView = LayoutInflater.from(mContext).inflate(R.layout.daily_list_item, null);
             holder = new ViewHolder();
@@ -56,10 +54,8 @@ public class DayAdapter extends BaseAdapter {
             holder.timezone = (TextView) convertView.findViewById(R.id.locationLabel);
 
 
-
             convertView.setTag(holder);
-        }
-        else {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
@@ -69,17 +65,15 @@ public class DayAdapter extends BaseAdapter {
         holder.temperatureLabel.setText(day.getTemperatureMax() + "");
 
 
-
         if (position == 0) {
             holder.dayLabel.setText("Today");
-        }
-        else   if (position == 1) {
+        } else if (position == 1) {
             holder.dayLabel.setText("Tomorrow");
-        }else{
-        holder.dayLabel.setText(day.getDayOfTheWeek());
+        } else {
+            holder.dayLabel.setText(day.getDayOfTheWeek());
         }
 
-            return convertView;
+        return convertView;
     }
 
     private static class ViewHolder {
