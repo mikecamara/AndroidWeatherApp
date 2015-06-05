@@ -15,12 +15,63 @@ public class Day implements Parcelable {
     private long mTime;
     private String mSummary;
     private double mTemperatureMax;
+
+
+
+    private double mMoon;
+
+    private double mTemperatureMin;
     private String mIcon;
     private String mTimezone;
     private double mChanceRain;
     private long mSunriseTime;
+
+
     private long mSunsetTime;
 
+    public String getFormattedSunriseTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+        formatter.setTimeZone(TimeZone.getTimeZone(getTimezone()));
+        Date dateTime = new Date(getSunriseTime() * 1000);
+        String timeString = formatter.format(dateTime);
+
+        return timeString;
+    }
+
+    public String getFormattedSunsetTime() {
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+        formatter.setTimeZone(TimeZone.getTimeZone(getTimezone()));
+        Date dateTime = new Date(getSunsetTime() * 1000);
+        String timeString = formatter.format(dateTime);
+
+        return timeString;
+    }
+
+
+    public double getMoon() {
+        return mMoon;
+    }
+
+    public void setMoon(double moon) {
+        mMoon = moon;
+    }
+
+
+    public long getSunsetTime() {
+        return mSunsetTime;
+    }
+
+    public void setSunsetTime(long sunsetTime) {
+        mSunsetTime = sunsetTime;
+    }
+
+    public int getTemperatureMin() {
+        return ((((int) Math.round(mTemperatureMin)) - 32) * 5) / 9;
+    }
+
+    public void setTemperatureMin(double temperatureMin) {
+        mTemperatureMin = temperatureMin;
+    }
 
     public long getSunriseTime() {
         return mSunriseTime;
@@ -122,6 +173,11 @@ public class Day implements Parcelable {
         dest.writeString(mIcon);
         dest.writeString(mTimezone);
         dest.writeDouble(mChanceRain);
+        dest.writeLong(mSunriseTime);
+        dest.writeLong(mSunsetTime);
+        dest.writeDouble(mTemperatureMin);
+        dest.writeDouble(mMoon);
+
 
     }
 
@@ -132,6 +188,10 @@ public class Day implements Parcelable {
         mIcon = in.readString();
         mTimezone = in.readString();
         mChanceRain = in.readDouble();
+        mTemperatureMin = in.readDouble();
+        mMoon = in.readDouble();
+        mSunriseTime = in.readLong();
+        mSunsetTime = in.readLong();
 
 
     }

@@ -5,7 +5,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
-                tools:background="@drawable/bg_gradient_warm">
+                tools:background="@drawable/bg_gradient_day">
 
     <TextView
         android:id="@+id/timeLabel"

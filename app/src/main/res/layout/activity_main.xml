@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient_warm"
+    android:background="@android:color/white"
 
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -20,7 +20,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:text=""
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="24sp"/>
 
     <LinearLayout
@@ -40,7 +40,7 @@
             android:layout_alignTop="@+id/temperatureLabel"
             android:layout_centerHorizontal="false"
             android:layout_centerVertical="true"
-            android:text="..."
+            android:text=""
             android:textColor="#80ffffff"
             android:textSize="18sp"/>
     </LinearLayout>
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/degreeImageView"
             android:layout_toLeftOf="@+id/iconImageView"
-            android:text="--"
+            android:text=""
             android:textColor="@android:color/white"
             android:textSize="80sp"/>
 
@@ -76,7 +76,7 @@
             android:layout_marginTop="45dp"
             android:scaleX="3"
             android:scaleY="3"
-            android:src="@mipmap/cloudy_night"
+            android:src="@mipmap/fog"
             />
 
         <FrameLayout
@@ -125,7 +125,7 @@
                 android:layout_marginLeft="88dp"
                 android:layout_marginTop="45dp"
                 android:layout_toRightOf="@+id/circleTempMin"
-                android:text="--"
+                android:text=""
                 android:textColor="@android:color/white"
                 />
 
@@ -330,7 +330,7 @@
         android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
         android:text="Getting current weather..."
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="18dp"
 
         />

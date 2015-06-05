@@ -1,7 +1,11 @@
 package org.mcmikecamara.stormy.weather;
 
+import android.util.Log;
+
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 /**
@@ -16,6 +20,20 @@ public class Current {
     private double mPrecipChance;
     private String mSummary;
     private String mTimezone;
+    private double mWind;
+
+
+
+    public double getWind() {
+        return mWind;
+    }
+
+    public void setWind(double wind) {
+        mWind = wind;
+    }
+
+
+
 
 
     private double mTemperatureMax;
@@ -63,6 +81,18 @@ public class Current {
         String timeString = formatter.format(dateTime);
 
         return timeString;
+    }
+
+    public int getHourOfDay() {
+        Calendar calendar = GregorianCalendar.getInstance();
+        calendar.setTimeInMillis(getTime());
+        return calendar.get(Calendar.HOUR_OF_DAY);
+    }
+
+    public boolean isNight() {
+        boolean retval = ((this.getHourOfDay() >= 18) || (this.getHourOfDay() <= 6)); // earlier than 6am or after 6pm
+        Log.d(" Stormy","" + this.getHourOfDay());
+        return retval;
     }
 
     public void setTime(long time) {

@@ -314,23 +314,32 @@ public class MainActivity extends ActionBarActivity implements
         mTimezone.setText(current.getTimezone() + "");
         mTemperatureLabel.setText(current.getTemperature() + "°");
         mTimeLabel.setText("Now - " + current.getFormattedTime());
-        mHumidityValue.setText(current.getHumidity() + "°");
+        mHumidityValue.setText(this.mForecast.getDailyForecast()[0].getTemperatureMax()+"°");
 
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
-        if (current.getTemperature() > 25) {
-            layout.setBackground(getDrawable(R.drawable.bg_gradient_warm));
+        if (current.isNight()) {
+            layout.setBackground(getDrawable(R.drawable.bg_gradient_night));
 
         } else {
-            layout.setBackground(getDrawable(R.drawable.bg_gradient_cool));
+            layout.setBackground(getDrawable(R.drawable.bg_gradient_day));
         }
-        mPrecipValue.setText(current.getPrecipChance() + "°");
-        mPrecipValue1.setText(current.getPrecipChance() + "%");
-        mPrecipValue2.setText(current.getPrecipChance() + "%");
-        mPrecipValue3.setText(current.getPrecipChance() + "%");
-        mPrecipValue4.setText(current.getFormattedTime());
-        mPrecipValue5.setText(current.getFormattedTime());
+
+        if (this.mForecast.getDailyForecast()[0].getMoon() > 0 ) {
+         mPrecipValue3.setText("New moon");
+
+        } else {
+             //(this.mForecast.getDailyForecast()[0].getMoon() > 0) {
+
+                //mPrecipValue3.setText(this.mForecast.getDailyForecast()[0].getFormattedSunriseTime() + "");
+        }
+
+        mPrecipValue.setText(this.mForecast.getDailyForecast()[0].getTemperatureMin() + "°" );
+        mPrecipValue1.setText(this.mForecast.getDailyForecast()[0].getChanceRain() + "%");
+        mPrecipValue2.setText(current.getWind()+ "");
+        mPrecipValue4.setText(this.mForecast.getDailyForecast()[0].getFormattedSunriseTime() + "");
+        mPrecipValue5.setText(this.mForecast.getDailyForecast()[0].getFormattedSunsetTime() + "");
         mSummaryLabel.setText(current.getSummary());
         mTimezone.setText(current.getTimezone());
 
@@ -367,37 +376,41 @@ public class MainActivity extends ActionBarActivity implements
         for (int i = 0; i < data.length(); i++) {
             JSONObject jsonDay = data.getJSONObject(i);
             Day day = new Day();
+            if (jsonDay != null) {
+                day.setSummary(jsonDay.getString("summary"));
+                day.setIcon(jsonDay.getString("icon"));
+                day.setTemperatureMax(jsonDay.getDouble("temperatureMax"));
+                day.setTime(jsonDay.getLong("time"));
+                day.setChanceRain(jsonDay.getDouble("precipProbability"));
+                day.setTimezone(timezone);
+                day.setSunriseTime(jsonDay.getLong("sunriseTime"));
+                day.setTemperatureMin(jsonDay.getDouble("temperatureMin"));
+                day.setSunsetTime(jsonDay.getLong("sunsetTime"));
+                day.setMoon(jsonDay.getDouble("moonPhase"));
 
-            day.setSummary(jsonDay.getString("summary"));
-            day.setIcon(jsonDay.getString("icon"));
-            day.setTemperatureMax(jsonDay.getDouble("temperatureMax"));
-            day.setTime(jsonDay.getLong("time"));
-            day.setChanceRain(jsonDay.getDouble("precipProbability"));
-            day.setTimezone(timezone);
-            day.setSunriseTime(jsonDay.getLong("sunriseTime"));
-
-            days[i] = day;
-
-
-            if ((day.getTemperatureMax()) > 36) {
-                tooHotDays.add(day);
-            }
-
-            if ((day.getTemperatureMax()) < 10) {
-                tooColdDays.add(day);
-            }
-
-            if ((day.getChanceRain()) > 0.5) {
-                tooRainyDays.add(day);
-            }
+                days[i] = day;
 
 
-            //collect data how many days are raining and Toast it when user open days tab
-            if (days[i].getChanceRain() > 0) {
+                if ((day.getTemperatureMax()) > 36) {
+                    tooHotDays.add(day);
+                }
 
-                rainyDays = rainyDays + 1;
-                String stringRainyDays = String.valueOf(rainyDays);
+                if ((day.getTemperatureMax()) < 10) {
+                    tooColdDays.add(day);
+                }
 
+                if ((day.getChanceRain()) > 0.5) {
+                    tooRainyDays.add(day);
+                }
+
+
+                //collect data how many days are raining and Toast it when user open days tab
+                if (days[i].getChanceRain() > 0) {
+
+                    rainyDays = rainyDays + 1;
+                    String stringRainyDays = String.valueOf(rainyDays);
+
+                }
             }
         }
 
@@ -450,6 +463,7 @@ public class MainActivity extends ActionBarActivity implements
         current.setSummary(currently.getString("summary"));
         current.setTemperature(currently.getDouble("temperature"));
         current.setTimezone(timezone);
+        current.setWind(currently.getDouble("windSpeed"));
 
         return current;
     }
