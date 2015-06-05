@@ -21,7 +21,7 @@ public class Current {
     private String mSummary;
     private String mTimezone;
     private double mWind;
-
+    private double mTemperatureMax;
 
 
     public double getWind() {
@@ -31,12 +31,6 @@ public class Current {
     public void setWind(double wind) {
         mWind = wind;
     }
-
-
-
-
-
-    private double mTemperatureMax;
 
 
     public int getTemperatureMax() {
@@ -91,7 +85,7 @@ public class Current {
 
     public boolean isNight() {
         boolean retval = ((this.getHourOfDay() >= 18) || (this.getHourOfDay() <= 6)); // earlier than 6am or after 6pm
-        Log.d(" Stormy","" + this.getHourOfDay());
+        Log.d(" Stormy", "" + this.getHourOfDay());
         return retval;
     }
 

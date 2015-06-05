@@ -22,7 +22,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.model.LatLng;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
@@ -39,8 +38,6 @@ import org.mcmikecamara.stormy.weather.Forecast;
 import org.mcmikecamara.stormy.weather.Hour;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -71,9 +68,9 @@ public class MainActivity extends ActionBarActivity implements
     @InjectView(R.id.temperatureLabel)
     TextView mTemperatureLabel;
     @InjectView(R.id.humidityValue)
-    TextView mHumidityValue;
+    TextView mDayTempMax;
     @InjectView(R.id.precipValue)
-    TextView mPrecipValue;
+    TextView mDayTemperatureMin;
     @InjectView(R.id.summaryLabel)
     TextView mSummaryLabel;
     @InjectView(R.id.iconImageView)
@@ -84,16 +81,16 @@ public class MainActivity extends ActionBarActivity implements
     ProgressBar mProgressBar;
     @InjectView(R.id.locationLabel)
     TextView mTimezone;
-    @InjectView(R.id.precipValue1)
-    TextView mPrecipValue1;
-    @InjectView(R.id.precipValue2)
-    TextView mPrecipValue2;
-    @InjectView(R.id.precipValue3)
-    TextView mPrecipValue3;
-    @InjectView(R.id.precipValue4)
-    TextView mPrecipValue4;
-    @InjectView(R.id.precipValue5)
-    TextView mPrecipValue5;
+    @InjectView(R.id.ChanceOfRainValue)
+    TextView mChanceOfRain;
+    @InjectView(R.id.windSpeedValue)
+    TextView mWindSpeed;
+    @InjectView(R.id.moonPhaseValue)
+    TextView mMoonPhase;
+    @InjectView(R.id.sunriseTimeValue)
+    TextView mSunriseTime;
+    @InjectView(R.id.sunsetTimeValue)
+    TextView mSunsetTime;
 
 
     @Override
@@ -153,15 +150,6 @@ public class MainActivity extends ActionBarActivity implements
             }
         });
 
-
-        String latAsString = Double.toString(currentLatitude);
-        String lonAsString = Double.toString(currentLongitude);
-
-        Log.d(TAG, latAsString);
-        Log.d(TAG, lonAsString);
-
-        LatLng latLng = new LatLng(currentLatitude, currentLongitude);
-
     }
 
     @Override
@@ -217,10 +205,13 @@ public class MainActivity extends ActionBarActivity implements
     }
 
     private void getForecast(double currentLatitude, double currentLongitude) {
+
+        //Mike's apiKey for forecast.io website
         String apiKey = "d27540fae83b3983cab20efd226287e5";
 
-
-        String forecastUrl = "https://api.forecast.io/forecast/" + apiKey + "/" + currentLatitude + "," + currentLongitude;
+        String forecastUrl = "https://api.forecast.io/forecast/"
+                + apiKey + "/" + currentLatitude + ","
+                + currentLongitude;
 
 
         if (isNetworkAvailable()) {
@@ -245,7 +236,6 @@ public class MainActivity extends ActionBarActivity implements
                         }
                     });
                     alertUserAboutError();
-
                 }
 
                 @Override
@@ -274,7 +264,6 @@ public class MainActivity extends ActionBarActivity implements
 
                                 }
                             });
-
 
                         } else {
                             alertUserAboutError();
@@ -314,11 +303,13 @@ public class MainActivity extends ActionBarActivity implements
         mTimezone.setText(current.getTimezone() + "");
         mTemperatureLabel.setText(current.getTemperature() + "°");
         mTimeLabel.setText("Now - " + current.getFormattedTime());
-        mHumidityValue.setText(this.mForecast.getDailyForecast()[0].getTemperatureMax()+"°");
+        mDayTempMax.setText(this.mForecast.getDailyForecast()[0].getTemperatureMax() + "°");
 
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.relativeLayout);
 
+        // Mike's Cunneen piece of code
+        // this will check if current hour is > 18pm and < 6am, so it's night
         if (current.isNight()) {
             layout.setBackground(getDrawable(R.drawable.bg_gradient_night));
 
@@ -326,20 +317,18 @@ public class MainActivity extends ActionBarActivity implements
             layout.setBackground(getDrawable(R.drawable.bg_gradient_day));
         }
 
-        if (this.mForecast.getDailyForecast()[0].getMoon() > 0 ) {
-         mPrecipValue3.setText("New moon");
-
+        //check which phase of the moon it is
+        //I will to implement the other 3 conditions
+        if (this.mForecast.getDailyForecast()[0].getMoon() > 0) {
+            mMoonPhase.setText("New moon");
         } else {
-             //(this.mForecast.getDailyForecast()[0].getMoon() > 0) {
-
-                //mPrecipValue3.setText(this.mForecast.getDailyForecast()[0].getFormattedSunriseTime() + "");
         }
 
-        mPrecipValue.setText(this.mForecast.getDailyForecast()[0].getTemperatureMin() + "°" );
-        mPrecipValue1.setText(this.mForecast.getDailyForecast()[0].getChanceRain() + "%");
-        mPrecipValue2.setText(current.getWind()+ "");
-        mPrecipValue4.setText(this.mForecast.getDailyForecast()[0].getFormattedSunriseTime() + "");
-        mPrecipValue5.setText(this.mForecast.getDailyForecast()[0].getFormattedSunsetTime() + "");
+        mDayTemperatureMin.setText(this.mForecast.getDailyForecast()[0].getTemperatureMin() + "°");
+        mChanceOfRain.setText(this.mForecast.getDailyForecast()[0].getChanceRain() + "%");
+        mWindSpeed.setText(current.getWind() + "");
+        mSunriseTime.setText(this.mForecast.getDailyForecast()[0].getFormattedSunriseTime() + "");
+        mSunsetTime.setText(this.mForecast.getDailyForecast()[0].getFormattedSunsetTime() + "");
         mSummaryLabel.setText(current.getSummary());
         mTimezone.setText(current.getTimezone());
 
@@ -357,7 +346,6 @@ public class MainActivity extends ActionBarActivity implements
 
     public Day[] getDailyForecast(String jsonData) throws JSONException {
 
-        int rainyDays = 0;
 
         JSONObject forecast = new JSONObject(jsonData);
         String timezone = forecast.getString("timezone");
@@ -365,12 +353,6 @@ public class MainActivity extends ActionBarActivity implements
         JSONArray data = daily.getJSONArray("data");
 
         Day[] days = new Day[data.length()];
-
-        //not using this variables, but might use in the future
-        List<Day> tooHotDays = new ArrayList<Day>();
-        List<Day> tooRainyDays = new ArrayList<Day>();
-        List<Day> tooColdDays = new ArrayList<Day>();
-        List<Day> perfectDays = new ArrayList<Day>();
 
 
         for (int i = 0; i < data.length(); i++) {
@@ -390,36 +372,9 @@ public class MainActivity extends ActionBarActivity implements
 
                 days[i] = day;
 
-
-                if ((day.getTemperatureMax()) > 36) {
-                    tooHotDays.add(day);
-                }
-
-                if ((day.getTemperatureMax()) < 10) {
-                    tooColdDays.add(day);
-                }
-
-                if ((day.getChanceRain()) > 0.5) {
-                    tooRainyDays.add(day);
-                }
-
-
-                //collect data how many days are raining and Toast it when user open days tab
-                if (days[i].getChanceRain() > 0) {
-
-                    rainyDays = rainyDays + 1;
-                    String stringRainyDays = String.valueOf(rainyDays);
-
-                }
             }
         }
-
-        int amountRainyDays = tooRainyDays.size();
-        int amountHotDays = tooHotDays.size();
-        int amountColdDays = tooColdDays.size();
-
         return days;
-
     }
 
 
@@ -434,13 +389,11 @@ public class MainActivity extends ActionBarActivity implements
         for (int i = 0; i < data.length(); i++) {
             JSONObject jsonHour = data.getJSONObject(i);
             Hour hour = new Hour();
-
             hour.setSummary(jsonHour.getString("summary"));
             hour.setIcon(jsonHour.getString("icon"));
             hour.setTemperature(jsonHour.getDouble("temperature"));
             hour.setTime(jsonHour.getLong("time"));
             hour.setTimezone(timezone);
-
             hours[i] = hour;
         }
         return hours;
@@ -475,7 +428,6 @@ public class MainActivity extends ActionBarActivity implements
         if (networkInfo != null && networkInfo.isConnected()) {
             isAvailable = true;
         }
-
         return isAvailable;
     }
 
@@ -483,22 +435,21 @@ public class MainActivity extends ActionBarActivity implements
 
         AlertDialogFragment dialog = new AlertDialogFragment();
         dialog.show(getFragmentManager(), "error_dialog");
-
     }
 
+    //click on this button uses a Intent to open Daily forecast Activity
     @OnClick(R.id.dailyButton)
     public void startDailyActivity(View view) {
         Intent intent = new Intent(this, DailyForecastActivity.class);
         intent.putExtra(DAILY_FORECAST, mForecast.getDailyForecast());
         startActivity(intent);
-
     }
 
+    //click on this button uses a Intent to open Hourly forecast Activity
     @OnClick(R.id.hourlyButton)
     public void startHourlyActivity(View view) {
         Intent intent = new Intent(this, HourlyForecastActivity.class);
         intent.putExtra(HOURLY_FORECAST, mForecast.getHourlyForecast());
         startActivity(intent);
-
     }
 }

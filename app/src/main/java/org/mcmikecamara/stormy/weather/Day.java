@@ -15,18 +15,12 @@ public class Day implements Parcelable {
     private long mTime;
     private String mSummary;
     private double mTemperatureMax;
-
-
-
     private double mMoon;
-
     private double mTemperatureMin;
     private String mIcon;
     private String mTimezone;
     private double mChanceRain;
     private long mSunriseTime;
-
-
     private long mSunsetTime;
 
     public String getFormattedSunriseTime() {
@@ -55,7 +49,6 @@ public class Day implements Parcelable {
     public void setMoon(double moon) {
         mMoon = moon;
     }
-
 
     public long getSunsetTime() {
         return mSunsetTime;
@@ -178,7 +171,6 @@ public class Day implements Parcelable {
         dest.writeDouble(mTemperatureMin);
         dest.writeDouble(mMoon);
 
-
     }
 
     private Day(Parcel in) {
@@ -192,7 +184,6 @@ public class Day implements Parcelable {
         mMoon = in.readDouble();
         mSunriseTime = in.readLong();
         mSunsetTime = in.readLong();
-
 
     }
 

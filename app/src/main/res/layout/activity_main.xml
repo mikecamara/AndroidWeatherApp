@@ -76,7 +76,7 @@
             android:layout_marginTop="45dp"
             android:scaleX="3"
             android:scaleY="3"
-            android:src="@mipmap/fog"
+            android:src="@mipmap/rain_icon"
             />
 
         <FrameLayout
@@ -275,7 +275,7 @@
         android:weightSum="1">
 
         <TextView
-            android:id="@+id/precipValue1"
+            android:id="@+id/ChanceOfRainValue"
             android:layout_width="43dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -284,7 +284,7 @@
             android:textColor="#80ffffff"/>
 
         <TextView
-            android:id="@+id/precipValue2"
+            android:id="@+id/windSpeedValue"
             android:layout_width="51dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/precipLabel"
@@ -293,7 +293,7 @@
             android:textColor="#80ffffff"/>
 
         <TextView
-            android:id="@+id/precipValue3"
+            android:id="@+id/moonPhaseValue"
             android:layout_width="54dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/humidityLabelLabel"
@@ -302,7 +302,7 @@
             android:textColor="#80ffffff"/>
 
         <TextView
-            android:id="@+id/precipValue4"
+            android:id="@+id/sunriseTimeValue"
             android:layout_width="57dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/moonLabel"
@@ -311,7 +311,7 @@
             android:textColor="#80ffffff"/>
 
         <TextView
-            android:id="@+id/precipValue5"
+            android:id="@+id/sunsetTimeValue"
             android:layout_width="59dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/sunriseLabel"
