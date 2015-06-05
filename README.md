@@ -4,13 +4,13 @@
 J Weather is an app that provides weather forecast according to the user's location. It is possible to check the current, daily and hourly forecast, as well as current chance of rain, wind speed, moon phase, Sunrise and Sunset time. This app is inspired in a Tree House tutorial that helps to implement a weather app. 
 
 ## Examples
-To check how the user interface loooks like, access <a href="http://imgur.com/a/6jB8a" target="_blank">User interface</a>
+To check how the user interface looks like, access <a href="http://imgur.com/a/6jB8a" target="_blank">User interface</a>
 
 ## The J Weather Guide
 Detailed explanations of the app features can be found in the [Developer's Guide](DeveloperGuide.pdf).
 
 ## The J Weather User's Guide
-Detailed explanations of the app usability for users [User's Guide](UserGuide.pdf).
+Detailed explanations of the app usability for users can be found in the [User's Guide](UserGuide.pdf).
 
 ## Quick Start
 * Add your Google services and forecast.io API keys.
